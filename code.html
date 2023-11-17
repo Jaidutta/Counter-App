@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-  <title>App Name: A Coding Project By Joy Dutta</title>
+  <title>Counter App: A Coding Project By Joy Dutta</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,11 +11,17 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
+  <!-- Google Font for Racing Sans One -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
 
   <!-- Favicon  -->
   <link rel="icon" href="/img/favicon-32x32.png" type="image/png">
+  
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/site.css">
   <link rel="stylesheet" href="./css/prism.css">
@@ -26,8 +32,8 @@
   <!-- ==== Nav Section ==== -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="./img/White logo - no background.svg" alt="Brand logo color background"
-          width="30" height="24" class="d-inline-block align-text-top">APP NAME</img></a>
+      <a class="navbar-brand logoFont" href="#"><img src="./img/White logo - no background.svg" alt="Brand logo color background"
+          width="30" height="24" class="d-inline-block align-text-top">COUNTER APP</img></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -54,24 +60,104 @@
     </div>
   </nav>
 
-  <!-- ==== Nav Section ==== -->
+  <!-- ==== Main Section ==== -->
   <main class="flex-shrink-0">
     <div class="container py-5 px-5 mt-5">
-      <h2 class="border-1 border-bottom border-dark">The Code for APP NAME.</h2>
+      <h2 class="border-1 border-bottom border-dark">The Code for Counter App.</h2>
       <div class="row row-cols-1 row-cols-md-2">
         <div class="col-lg-8">
           <pre class="line-number">
             <code class="language-javascript">
-              // Call the alert function to alert Hello World string
-              function helloWorld() {
-                alert("Hello World");
-              }
+
+function getValues() {
+  // get values from the page
+  let startValue = document.getElementById("startValue").value;
+  let endValue = document.getElementById("endValue").value;
+
+
+  // Input Validation
+  // parse into Integers
+  startValue = parseInt(startValue);
+  endValue = parseInt(endValue);
+
+  if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+
+    // We call generateNumbers
+    let numbers = generateNumbers(startValue, endValue);
+
+    // We call displayNumbers
+    displayNumbers(numbers);
+    
+  } else {
+    alert("You must enter integer/whole number");
+  }
+}
+
+            </code>
+          </pre>
+
+         
+        </div>
+        <div class="col-lg-4">
+          <h5>getValues( ) function: </h5>
+          <p>This function is divided into smaller sub-functions</p>
+          <p>The function collects inputs from the DOM and parses them using the built-in parseInt method. If the string is successfully parsed, the function returns the integer value. If not, it returns NaN. If both values are integers, the generateNumbers(sValue, eValue) function is called. Otherwise, it shows an alert to the user to enter integer inputs</p>
+          
+          
+        </div>
+        <div class="col-lg-8">
+          <pre class="line-number">
+            <code class="language-javascript">
+function generateNumbers(sValue, eValue) {
+  let numbers = [];
+
+  for (let index = sValue; index <= eValue; index++) {
+    numbers.push(index);
+  }
+  return numbers;
+}
+
             </code>
           </pre>
         </div>
         <div class="col-lg-4">
-          <p>The code is structured in one function</p>
-          <h5>Hello World is a function that displays an alert with a message of "Hello World"</h5>
+          <h5>generateNumbers(sValue, eValue)</h5>
+          <p>This function generates an array of numbers between the start and end values using a loop. Finally, the displayNumbers(numbers) method is called</p>
+        </div>
+        <div class="col-lg-8">
+          <pre class="line-number">
+          <code class="language-javascript">
+let templateRows = "";
+
+function displayNumbers(numbers) {
+  for (let index = 0; index < numbers.length; index++) {
+    let className = "";
+    let number = numbers[index];
+
+    if (number % 2 === 0) {
+      className = "even";
+    } else {
+      className = "odd";
+    }
+
+    // This DOESN'T work well with Prism. See the source
+    templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+  }
+
+  document.getElementById("results").innerHTML = templateRows;
+}
+          </code>
+          </pre>
+        </div>
+        
+        <div class="col-lg-4">
+          <h5>displayNumbers(numbers) function: </h5>
+          <p>Here using a loop, we iterate through the numbers and check whether the number is odd or even.
+            For an even number we add an 'even' class while for an odd number we add the 'odd' class to change the look using css, interpolate the number and concatenate it to the empty string,generating the HTML to add the chunk of code inside the table
+
+            
+             templateRows += `<tr><td class="${className}">${number}</td></tr>
+          </p>
         </div>
       </div>
     </div>
@@ -89,7 +175,7 @@
         <div class="col d-flex justify-content-start justify-content-lg-center">
           <img src="./img/White logo - no background.svg" alt="" height="35">
         </div>
-        <div class="col d-flex justify-content-start justify-content-lg-end algin-items-center border border-success">
+        <div class="col d-flex justify-content-start justify-content-lg-end algin-items-center">
           <div class="row">
             <div class="col social">
               <a href="#" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>

@@ -9,6 +9,12 @@ main>.container {
   margin-bottom: 5rem;
 }
 
+.logoFont {
+  font-family: 'Racing Sans One', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
 body {
   color: var(--dark-color);
 }
@@ -81,6 +87,33 @@ pre[class*="language-"] {
   white-space: pre-wrap;
   word-break: break-all;
   word-wrap: break-word;
+}
+
+#btnSubmit {
+  background: rgb(3,0,36);
+  background: linear-gradient(270deg, rgba(109,96,255,1) 0%, rgba(16,157,255,1) 67%, rgba(15,210,250,1) 100%);
+  color: #292929;
+  font-weight: 600;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: black;
+  box-shadow: 1px  1px 5px;
+}
+
+#btnSubmit:hover {
+  opacity: 0.75;
+  background-color: rgb(73, 98, 170);
+  color: whitesmoke;
+  box-shadow: 1px  4px 8px;
+}
+
+.odd {
+  font-weight: 100;
+}
+
+.even {
+  font-weight: bold;
+  font-size: large;
 }
 
 .sticky-footer {
